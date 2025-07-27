@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Wizard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    a.btn {
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    a.btn:hover {
+      background-color: #28a745;
+    }
+    /* Style for the university info box */
+    #universityInfo {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9fafb;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      color: #333;
+      display: none; /* Hidden by default */
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4">
+  <header class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">EduWizard</h1>
+    <nav class="space-x-4">
+      <a href="#" id="homeLink">Home</a>
+      <a href="#" id="aboutus">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#" id="courses">Courses</a>
+      <a href="#contact">Contact</a>
+      <select id="languageSelect" onchange="switchLanguage()" class="ml-4 p-1 border">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </nav>
+  </header>
+
+  <main class="max-w-2xl mx-auto bg-white mt-8 p-6 rounded shadow">
+    <h2 id="wizardTitle" class="text-2xl font-semibold mb-4">Choose Program Type</h2>
+    <a href="program_types.html" class="btn">Search the acadamic field here </a>
+
+    <!-- University Info Text Container -->
+    <div id="universityInfo"></div>
+  </main>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Choose Program Type"
+      },
+      ar: {
+        title: "اختر نوع البرنامج"
+      },
+      de: {
+        title: "Wählen Sie den Programmtyp"
+      }
+    };
+
+    function switchLanguage() {
+      const lang = document.getElementById("languageSelect").value;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem("language", lang);
+      document.getElementById("wizardTitle").textContent = translations[lang].title;
+    }
+
+    window.onload = () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      document.getElementById("languageSelect").value = savedLang;
+      switchLanguage();
+
+      // Add event listener for Home link
+      document.getElementById("homeLink").addEventListener("click", function(event) {
+        event.preventDefault(); // prevent default anchor action
+        const info = `The University of Engineering and Technology, Peshawar (UET Peshawar), formerly known as NWFP University of Engineering and Technology, is a public university located in Peshawar, Khyber Pakhtunkhwa, Pakistan.[2] Formerly known as NWFP University of Engineering and Technology until 2010, it an institution of higher learning in Pakistan with a strong emphasis on the development of science and engineering.[3] The university offers undergraduate and post-graduate programs in various engineering disciplines. The university is also a member of the Association of Commonwealth Universities of the United Kingdom.[4] The university was regarded as one of the best engineering schools in the country and was ranked in 7th position nationwide in the category of "Engineering and Technology" by HEC, the highest governing body of higher education in Pakistan.[5] According to Times Higher Education World University Rankings 2023, the university is ranked in 801-1000th worldwide and in 251-300th position in Asia.[6]`;
+
+        
+        const universityDiv = document.getElementById("universityInfo");
+        universityDiv.textContent = info;
+        universityDiv.style.display = "block";
+        universityDiv.scrollIntoView({ behavior: 'smooth' });
+      });
+
+    
+      document.getElementById("courses").addEventListener("click", function(event) {
+        event.preventDefault(); // prevent default anchor action
+        const info = `The main campus offers a comprehensive array of engineering disciplines:
+
+Agricultural Engineering
+
+Architecture
+
+Chemical Engineering
+
+Civil Engineering
+
+Computer Science & IT 
+
+Computer Systems Engineering
+
+Electrical Engineering
+
+Electronics Engineering
+
+Industrial Engineering
+
+Mechanical Engineering
+
+Mechatronics Engineering
+
+Mining Engineering
+
+Software Engineering
+
+Telecommunication Engineering`;
+
+        
+        const universityDiv = document.getElementById("universityInfo");
+        universityDiv.textContent = info;
+        universityDiv.style.display = "block";
+        universityDiv.scrollIntoView({ behavior: 'smooth' });
+      });
+      document.getElementById("aboutus").addEventListener("click", function(event) {
+        event.preventDefault(); // prevent default anchor action
+        const info = `The University of Engineering and Technology, Peshawar (UET Peshawar),
+         formerly known as NWFP University of Engineering and Technology, is a public university 
+         located in Peshawar, Khyber Pakhtunkhwa, Pakistan.[2] Formerly known as NWFP University
+          of Engineering and Technology until 2010, it an institution of higher learning in Pakistan with
+           a strong emphasis on the development of science and engineering.[3] The university offers undergraduate 
+           and post-graduate programs in various engineering disciplines. The university is also a member of 
+           the Association of Commonwealth Universities of the United Kingdom.[4] The university was regarded 
+           as one of the best engineering schools in the country and was ranked in 7th position nationwide in 
+           the category of "Engineering and Technology" by HEC, the highest governing body of higher education
+            in Pakistan.[5] According to Times Higher Education World University Rankings 2023, the university is
+             ranked in 801-1000th worldwide and in 251-300th position in Asia.[6]`;
+
+        
+        const universityDiv = document.getElementById("universityInfo");
+        universityDiv.textContent = info;
+        universityDiv.style.display = "block";
+        universityDiv.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>

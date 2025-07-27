@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Wizard - Step 1</title>
+  <script>
+    const translations = {
+      en: {
+        title: "Step 1 – Choose Program Type",
+        intro: "Please select the type of program you are interested in:",
+        options: [
+          { label: "Foundation Year / Studienkolleg", link: "foundation.html" },
+          { label: "Bachelor’s Degree", link: "bachelor.html" },
+          { label: "Dual Study Program", link: "dual.html" },
+          { label: "Master’s Degree", link: "master.html" },
+          { label: "Certificate Programs", link: "certificate.html" },
+          { label: "Language Course", link: "language.html" }
+        ],
+        next: "Next"
+      },
+      ar: {
+        title: "الخطوة 1 – اختر نوع البرنامج",
+        intro: "يرجى اختيار نوع البرنامج الذي ترغب في الالتحاق به:",
+        options: [
+          { label: "السنة التأسيسية / Studienkolleg", link: "foundation.html" },
+          { label: "درجة البكالوريوس", link: "bachelor.html" },
+          { label: "برنامج الدراسة المزدوج", link: "dual.html" },
+          { label: "درجة الماجستير", link: "master.html" },
+          { label: "برامج الشهادات", link: "certificate.html" },
+          { label: "دورة لغة", link: "language.html" }
+        ],
+        next: "التالي"
+      },
+      de: {
+        title: "Schritt 1 – Programmtyp wählen",
+        intro: "Bitte wählen Sie den gewünschten Programmtyp aus:",
+        options: [
+          { label: "Studienkolleg / Vorbereitungsjahr", link: "foundation.html" },
+          { label: "Bachelorstudium", link: "bachelor.html" },
+          { label: "Duales Studium", link: "dual.html" },
+          { label: "Masterstudium", link: "master.html" },
+          { label: "Zertifikatsprogramme", link: "certificate.html" },
+          { label: "Sprachkurs", link: "language.html" }
+        ],
+        next: "Weiter"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      localStorage.setItem('language', lang);
+      const t = translations[lang];
+
+      document.getElementById("pageTitle").textContent = t.title;
+      document.getElementById("introText").textContent = t.intro;
+      const optionsList = document.getElementById("programOptions");
+      optionsList.innerHTML = "";
+      t.options.forEach(opt => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.textContent = opt.label;
+        link.href = opt.link;
+        link.className = "block p-2 bg-gray-200 my-1 rounded hover:bg-green-200 text-black no-underline";
+        li.appendChild(link);
+        optionsList.appendChild(li);
+      });
+      document.getElementById("nextBtn").textContent = t.next;
+    }
+
+    window.onload = () => {
+      const savedLang = localStorage.getItem("language") || "en";
+      document.getElementById("languageSelect").value = savedLang;
+      setLanguage(savedLang);
+
+      const nextBtn = document.getElementById("nextBtn");
+      nextBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        const lang = localStorage.getItem("language") || "en";
+        window.location.href = `step2.html?lang=${lang}`;
+      });
+    };
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 min-h-screen p-6">
+  <header class="flex justify-between items-center mb-6">
+    <h1 id="pageTitle" class="text-2xl font-bold">Step 1 – Choose Program Type</h1>
+    <select id="languageSelect" class="border rounded p-1" onchange="setLanguage(this.value)">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </header>
+
+  <main class="bg-white p-6 rounded shadow-md max-w-2xl mx-auto">
+    <p id="introText" class="mb-4">Please select the type of program you are interested in:</p>
+    <ul id="programOptions" class="mb-6"></ul>
+    <a href="eng_med.html" id="nextBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 inline-block text-center">
+      Next
+    </a>
+  </main>
+</body>
+</html>

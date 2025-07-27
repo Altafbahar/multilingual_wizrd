@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Step 2 – Subject Area</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 30px;
+    }
+
+    .step-container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .subject-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 15px;
+      margin-bottom: 12px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .subject-option:hover {
+      border-color: #007bff;
+      background-color: #f0f8ff;
+    }
+
+    .subject-option input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #007bff;
+    }
+
+    .subject-option span {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .subject-option input[type="radio"]:checked + span {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .subject-option a {
+      font-size: 0.9em;
+      color: #007bff;
+      text-decoration: underline;
+      margin-left: 15px;
+    }
+
+    .subject-option a:hover {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="step-container">
+    <h2>Step 2 – Subject Area</h2>
+    <form>
+
+      <label class="subject-option">
+        <input type="radio" id="cs" name="subject" value="Computer Science">
+        <span>Computer Science / Data / AI</span>
+        <a href="IT_form.php">More info</a>
+      </label>
+
+      <label class="subject-option">
+        <input type="radio" id="business" name="subject" value="Business">
+        <span>Business & Economics</span>
+        <a href="Business_form.php" target="_blank" onclick="event.stopPropagation();">More info</a>
+      </label>
+
+      <label class="subject-option">
+        <input type="radio" id="humanities" name="subject" value="Humanities">
+        <span>Humanities & Social Sciences</span>
+        <a href="HR_form.php" target="_blank" onclick="event.stopPropagation();">More info</a>
+      </label>
+
+      <label class="subject-option">
+        <input type="radio" id="environment" name="subject" value="Environmental Studies">
+        <span>Environmental Studies</span>
+        <a href="environment_form.html" target="_blank" onclick="event.stopPropagation();">More info</a>
+      </label>
+
+    </form>
+  </div>
+
+</body>
+</html>
